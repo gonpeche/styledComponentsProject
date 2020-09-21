@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageLayout, Input, PasswordInput } from 'components/common'
+import { PageLayout, Input, PasswordInput, Button } from 'components/common'
 
 import styled from 'styled-components'
 
@@ -12,13 +12,19 @@ const Form = styled.form`
   box-sizing: border-box;
   color: black;
   border-radius: 4px;
-`
 
+  .alt-text {
+    text-align: center;
+    margin: 10px 0;
+  }
+`
+let timeout
 export default function Login() {
   const [formFields, setFormFields] = React.useState({
     username: '',
     password: '',
   })
+  const [loading, setLoading] = React.useState(false)
 
   const handleInputChange = (e) => {
     setFormFields({
@@ -26,10 +32,28 @@ export default function Login() {
       [e.target.name]: e.target.value,
     })
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault() // avoid browser refresh
+    setLoading(true)
+    timeout = setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+  }
+
+  React.useEffect(
+    () => () => {
+      if (timeout) {
+        clearTimeout(timeout)
+      }
+    },
+    []
+  )
+
   return (
     <PageLayout>
       <h1>Login</h1>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           value={formFields.username}
           type="text"
@@ -42,6 +66,17 @@ export default function Login() {
           onChange={handleInputChange}
           name="password"
         />
+        <Button large type="submit" disabled={loading}>
+          {loading ? 'Loading...' : 'Login'}
+        </Button>
+        {!loading && (
+          <>
+            <div className="alt-text">or</div>
+            <Button secondary type="button">
+              Register
+            </Button>
+          </>
+        )}
       </Form>
     </PageLayout>
   )
