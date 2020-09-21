@@ -15,11 +15,31 @@ const Form = styled.form`
 `;
 
 export default function Login() {
+    const [formFields, setFormFields] = React.useState({ username: '', password: '' });
+
+    const handleInputChange = (e) => {
+        setFormFields({
+            ...formFields,
+            [e.target.name]: e.target.value
+        });
+    }
     return (
         <PageLayout>
             <h1>Login</h1>
             <Form>
-                <Input name="username" placeholder="Username" />
+                <Input 
+                value={formFields.username}
+                type="text"
+                onChange={handleInputChange}
+                name="username" 
+                placeholder="Username" />
+                <Input 
+                value={formFields.password}
+                type="password"
+                onChange={handleInputChange}
+                name="password" 
+                placeholder="Password" />
+                
             </Form>
         </PageLayout>
     )
