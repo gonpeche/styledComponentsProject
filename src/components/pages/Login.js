@@ -1,11 +1,7 @@
 import React from 'react'
-import {
-  PageLayout,
-  Input,
-  PasswordInput,
-  Button,
-  Spinner,
-} from 'components/common'
+import { PageLayout, Input, PasswordInput, Button } from 'components/common'
+
+import Spinner from 'components/common/Spinner'
 
 import styled from 'styled-components'
 
