@@ -1,5 +1,11 @@
 import React from 'react'
-import { PageLayout, Input, PasswordInput, Button } from 'components/common'
+import {
+  PageLayout,
+  Input,
+  PasswordInput,
+  Button,
+  Spinner,
+} from 'components/common'
 
 import styled from 'styled-components'
 
@@ -53,28 +59,35 @@ export default function Login() {
   return (
     <PageLayout>
       <h1>Login</h1>
+      <Spinner />
       <Form onSubmit={handleSubmit}>
-        <Input
-          value={formFields.username}
-          type="text"
-          onChange={handleInputChange}
-          name="username"
-          placeholder="Username"
-        />
-        <PasswordInput
-          value={formFields.password}
-          onChange={handleInputChange}
-          name="password"
-        />
-        <Button large type="submit" disabled={loading}>
-          {loading ? 'Loading...' : 'Login'}
-        </Button>
-        {!loading && (
+        {loading ? (
+          <Spinner />
+        ) : (
           <>
-            <div className="alt-text">or</div>
-            <Button secondary type="button">
-              Register
+            <Input
+              value={formFields.username}
+              type="text"
+              onChange={handleInputChange}
+              name="username"
+              placeholder="Username"
+            />
+            <PasswordInput
+              value={formFields.password}
+              onChange={handleInputChange}
+              name="password"
+            />
+            <Button large type="submit" disabled={loading}>
+              {loading ? 'Loading...' : 'Login'}
             </Button>
+            {!loading && (
+              <>
+                <div className="alt-text">or</div>
+                <Button secondary type="button">
+                  Register
+                </Button>
+              </>
+            )}
           </>
         )}
       </Form>
