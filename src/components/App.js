@@ -1,7 +1,7 @@
 import React from 'react'
 import Login from 'components/pages/Login'
 import Home from 'components/pages/Home'
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const GlobalStyle = createGlobalStyle`
@@ -13,10 +13,14 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Kaushan Script';
   }
 `
+const theme = {
+  primaryColor: '#f8049c',
+  secondaryColor: '#fdd54f',
+}
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
@@ -28,7 +32,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-    </>
+    </ ThemeProvider>
   )
 }
 
