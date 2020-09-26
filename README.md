@@ -1,2 +1,3 @@
 ## StyledComponents Project
 
+![](styledComponentsProject.gif)
