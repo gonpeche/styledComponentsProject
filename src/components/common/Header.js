@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { ThemeContext } from 'styled-components';
+import styled, { ThemeContext } from 'styled-components'
 import { Link as ReactRouterDomLink, useLocation } from 'react-router-dom'
 import { Toggle } from './Toggle'
 
@@ -10,8 +10,12 @@ const HeaderWrapper = styled.header`
   display: flex;
   padding: 0 16px;
   position: fixed;
-  background-image: linear-gradient(to right, ${p => p.theme.primaryColor}, ${p => p.theme.secondaryColor});
-  border-bottom: 3px solid ${p => p.theme.secondaryColor};
+  background-image: linear-gradient(
+    to right,
+    ${(p) => p.theme.primaryColor},
+    ${(p) => p.theme.secondaryColor}
+  );
+  border-bottom: 3px solid ${(p) => p.theme.secondaryColor};
   top: 0;
 `
 
@@ -24,8 +28,8 @@ const Menu = styled.nav`
   left: 0;
   padding: 8px;
   box-sizing: border-box;
-  border-bottom: 3px solid ${p => p.theme.secondaryColor};
-  background: white;
+  border-bottom: 3px solid ${(p) => p.theme.secondaryColor};
+  background: ${(p) => p.theme.bodyBackgroundColor};
 
   @media (min-width: 768px) {
     display: flex;
@@ -50,7 +54,7 @@ const StyledLink = styled(Link)`
   box-sizing: border-box;
   margin: auto 0;
   font-weight: ${(props) => (props.isActive ? 'bold' : 'normal')};
-  color: black;
+  color: ${(p) => p.theme.bodyFontColor};
 `
 
 const MobileMenuIcon = styled.div`
@@ -61,7 +65,7 @@ const MobileMenuIcon = styled.div`
 
   > div {
     height: 3px;
-    background: black;
+    background: ${(p) => p.theme.bodyFontColor};
     margin: 5px 0;
     width: 100%;
   }
@@ -74,7 +78,7 @@ const MobileMenuIcon = styled.div`
 export function Header() {
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = React.useState(false)
-  const {id, setTheme } = React.useContext(ThemeContext);
+  const { id, setTheme } = React.useContext(ThemeContext)
   return (
     <HeaderWrapper>
       <MobileMenuIcon onClick={() => setMenuOpen(!menuOpen)}>
@@ -89,7 +93,7 @@ export function Header() {
         <StyledLink isActive={pathname === '/login'} to="/login">
           Login
         </StyledLink>
-        <Toggle onToggle={setTheme} isActive={id === 'dark'}/>
+        <Toggle onToggle={setTheme} isActive={id === 'dark'} />
       </Menu>
     </HeaderWrapper>
   )

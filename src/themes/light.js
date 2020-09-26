@@ -4,7 +4,6 @@ const theme = {
     secondaryColor: '#fdd54f',
     bodyBackgroundColor: 'white',
     bodyFontColor: 'black',
-
 }
 
   export default theme;
