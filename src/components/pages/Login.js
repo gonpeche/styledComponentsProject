@@ -20,7 +20,7 @@ const Form = styled.form`
     margin: 10px 0;
   }
 
-  ${Button}:first-of-type {
+  > ${Button}:first-of-type {
     margin-top: 40px;
   }
 `
