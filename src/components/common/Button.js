@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components'
+import PropTypes from 'prop-types'
 
-const largeStyles = ({large}) => {
-  if(large) {
+const largeStyles = ({ large }) => {
+  if (large) {
     return css`
       padding: 10px;
       border-radius: 5px;
@@ -18,7 +19,10 @@ const largeStyles = ({large}) => {
 
 const Button = styled.button`
   color: white;
-  background: ${(props) => (props.secondary ? props.theme.secondaryColor : p => props.theme.primaryColor)};
+  background: ${(props) =>
+    props.secondary
+      ? props.theme.secondaryColor
+      : (p) => props.theme.primaryColor};
   font-weight: bold;
   ${largeStyles}
 
@@ -33,5 +37,10 @@ const Button = styled.button`
     color: #666;
   }
 `
+
+Button.propTypes = {
+  large: PropTypes.bool,
+  secondary: PropTypes.bool,
+}
 
 export { Button }
